@@ -39,11 +39,11 @@ def save_category(conn, news_list: list) :
         result = select(conn, select_sql, select_values)
         
         # select에 실패했거나 값이 없으면 건너뜀
-        if result is None:
+        if len(result) == 0:
             continue 
         
         # insert에 필요한 값 저장
-        insert_values = (result, cat_id)
+        insert_values = (result[0][0], cat_id)
         # insert 실행
         insert(conn, insert_sql, insert_values)
         

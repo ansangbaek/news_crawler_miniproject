@@ -53,11 +53,9 @@ def main() :
 
     # DB data 저장  
     for news_list in news_lists:
-        for item in save_news(conn, news_list) :
+        save_news(conn, news_list)
         save_category(conn, news_list)
 
-    # Slack 에 보내기
-    send_slack_message(new_items)
 
     # DB연결 해제
     close(conn)

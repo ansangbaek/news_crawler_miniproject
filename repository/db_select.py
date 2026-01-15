@@ -33,16 +33,9 @@ def select(conn, sql, values) :
 
     
     # cursor의 결과 반환 
-    row = cursor.fetchone()
+    row = cursor.fetchall()
 
    
-    # 반환 받은 결과가 없으면 return None
-    if row is None:
-        return None
-
-    
-    # 반환받은 실제 결과
-    result = row[0]
 
     close(cursor)
-    return result
+    return row
