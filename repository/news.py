@@ -18,7 +18,6 @@ def save_news(conn, news_list: list) :
     # data insert sql
     insert_sql = "insert into news (title, link, publish_dt) values (%s, %s, %s)"
     
-    new_items = []
     for news in news_list:
 
         # select의 필요한 value
@@ -37,11 +36,6 @@ def save_news(conn, news_list: list) :
         insert_values = (news['title'], news['rel_link'][0], news['write_dt'])
 
         # insert 함수 호출
-        if insert(conn, insert_sql, insert_values) :
-            new_items.append({
-                "title":news['title'],
-                "link":news['rel_link'][0],
-                "publish_dt":news['write_dt']})
+        insert(conn, insert_sql, insert_values)
 
-    return new_items
         

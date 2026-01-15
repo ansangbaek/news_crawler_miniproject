@@ -50,12 +50,10 @@ def main() :
     else :
         logger.info("DB연결 성공")
 
-    new_items = []
 
     # DB data 저장  
     for news_list in news_lists:
         for item in save_news(conn, news_list) :
-            new_items.append(item)
         save_category(conn, news_list)
 
     # Slack 에 보내기
