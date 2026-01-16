@@ -75,7 +75,11 @@ def send_slack_message():
             logger.error("Slack pase 연결 실패 :", response.status_code)
     except Exception as e:
         logger.error("Slack 전송 실패 : %s", e)
+    
 
+    close(conn)
+
+    logger.info("DB연결해제")
 
 
 if __name__ == "__main__":
