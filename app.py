@@ -3,6 +3,9 @@ import logging_config as log_con
 from  crawler import *
 from repository import *
 
+log_con.setup_logging() 
+logger = logging.getLogger(__name__)
+
 def main() :
     """
     rss 피드를 수집하여 news를 저장하는 실행 함수
@@ -10,8 +13,6 @@ def main() :
 
 
     
-    log_con.setup_logging() 
-    logger = logging.getLogger(__name__)
     
     logger.info("main실행")
 

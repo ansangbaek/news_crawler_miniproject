@@ -6,6 +6,9 @@ import logging_config as log_con
 from repository import *
 from datetime import datetime, timedelta
 
+log_con.setup_logging()
+logger = logging.getLogger(__name__)
+
 def send_slack_message():
  
     """
@@ -16,8 +19,6 @@ def send_slack_message():
 
     """
     
-    log_con.setup_logging()
-    logger = logging.getLogger(__name__)
     
     # Slack url가져오기
     webhook_url = os.getenv("SLACK_WEBHOOK_URL")
