@@ -22,20 +22,20 @@ def main() :
 
     if rss == None :
         logger.error("get_rss_url failed")
-        sys.exit()
+        sys.exit(1)
 
     # 인자로 전달하는 url link의 응답 body(text)를 받아옴  
     rss_html = load_url_text(rss[0])
 
     if rss_html == None :
-        sys.exit()
+        sys.exit(1)
 
     # 카테고리별 rss 링크 목록 수집
     rss_link_list = parse_rss(rss_html)
     
     if not rss_link_list:
         logger.info("get_rss_link failed")
-        sys.exit() 
+        sys.exit(1) 
     
 
     # 카테고리별 news의 정보 수집
@@ -47,20 +47,21 @@ def main() :
     conn = create_conn()
     
     if conn == None :
-        sys.exit()
+        sys.exit(1)
     else :
         logger.info("DB연결 성공")
 
+    cnt = 0
 
     # DB data 저장  
     for news_list in news_lists:
-        save_news(conn, news_list)
+        cnt += save_news(conn, news_list)
         save_category(conn, news_list)
 
 
     # DB연결 해제
     close(conn)
-    logger.info("DB연결 해제")
+    logger.info("insert %s건 DB연결해제",cnt)
 
 if __name__ == "__main__" :
     main()

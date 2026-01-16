@@ -17,6 +17,8 @@ def save_news(conn, news_list: list) :
     
     # data insert sql
     insert_sql = "insert into news (title, link, publish_dt) values (%s, %s, %s)"
+   
+    cnt = 0
     
     for news in news_list:
 
@@ -37,5 +39,6 @@ def save_news(conn, news_list: list) :
 
         # insert 함수 호출
         insert(conn, insert_sql, insert_values)
-
+        cnt += 1
         
+    return cnt

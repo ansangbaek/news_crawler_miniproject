@@ -24,16 +24,15 @@ def send_slack_message():
     webhook_url = os.getenv("SLACK_WEBHOOK_URL")
 
     if not webhook_url:
-        logger.error("SLACK_WEBHOOK_URL 설정 필요")
-        return
-    
+        logger.error("SLACK_WEBHOOK_URL 설정 필요") 
+        sys.exit(1)
     
 
 
     conn = create_conn()
     
     if conn is None:
-        sys.exit()
+        sys.exit(1)
     else :
         logger.info("DB연결 성공")
     
